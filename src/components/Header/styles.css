@@ -1,0 +1,17 @@
+.divHeader {
+    display: flex;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 80px;
+    background-color: #071D41;
+}
+
+.divHeader .icon {
+    color: white;
+    margin-right: 32px !important;
+    line-height: 1.3em !important;
+}
+
+.logoBranco {
+    padding-left: 32px;
+}

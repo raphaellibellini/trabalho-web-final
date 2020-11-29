@@ -1,0 +1,50 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.inputLogin {
+    width: 440px;
+    height: 56px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+}
+
+.buttonLogin {
+    width: 440px;
+    height: 56px;
+    background-color: #1351B4 !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+}
+
+h1 {
+  text-align: left;  
+  font-size: 36px !important;
+}
+
+.logo {
+    display: flex;
+    align-self: start;
+    margin-left: -16px;
+}
+
+.divLogin {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-color: #E7EBF1;
+}
+
+.ilustracaoLogin {
+    width: 464px;
+    height: 464px;
+    flex: 1;
+    margin-top: 88px;
+    margin-right: 44px;
+}

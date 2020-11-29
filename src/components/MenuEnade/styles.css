@@ -1,0 +1,53 @@
+.divHeader {
+    display: flex;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 80px;
+    background-color: #071D41;
+}
+
+.menu {
+    margin-top: 0 !important;
+    padding-left: 24px;
+    background-color: #071D41 !important;
+    border-radius: 0 !important;;
+}
+
+.itemMenu {
+    color: white !important;
+}
+
+.itemSubMenu {
+    background-color: white !important;
+}
+
+.lastItem {
+    width: 440px !important;
+}
+
+.logoBranco {
+    padding-left: 32px;
+}
+
+.buttonProva {
+    background-color: #1351B4 !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+}
+
+.itemMenu .icon {
+    color: white;
+    margin-right: 32px !important;
+    line-height: 1.3em !important;
+}
+
+.divHeader .icon {
+    color: white;
+    margin-right: 32px !important;
+    line-height: 1.3em !important;
+}
+
+.lastItem .icon {
+    color: #757575;
+}
