@@ -242,7 +242,7 @@ function Professor() {
         }
 
         try {
-            const response = await api.post('prova/cadastrar', data);
+            const response = await api.put('prova/atualizar/1', data);
             console.log('resp', response);
             alert(`Prova cadastrada com sucesso!`);
         } catch (err) {
