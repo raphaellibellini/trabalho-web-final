@@ -4,6 +4,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NewQuestion from './pages/NewQuestion';
 import Professor from './pages/Professor';
+import Aluno from './pages/Aluno';
+import Prova from './pages/Prova';
 
 function Routes() {
     return(
@@ -13,6 +15,8 @@ function Routes() {
                 <Route path='/register' component={Register} />
                 <Route path='/newquestion' component={NewQuestion} />
                 <Route path='/professor' component={Professor} />
+                <Route path='/aluno' component={Aluno} />
+                <Route path='/prova' component={Prova} />
             </Switch>
         </BrowserRouter>
     )

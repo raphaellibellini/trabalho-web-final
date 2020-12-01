@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import Header from '../../components/Header';
-import MenuEnade from '../../components/MenuEnade';
-import { useHistory } from 'react-router-dom';
 import api from '../../service/api';
 import logoAzul from '../../imgs/logoAzul.svg';
-import { Input, Button, Select, Checkbox, TextArea } from 'semantic-ui-react';
+import { Input, Button, Select, TextArea } from 'semantic-ui-react';
 import If from '../../components/If';
 import './styles.css';
 
@@ -18,8 +15,6 @@ function NewQuestion() {
     const [descricao, setDescricao] = useState('');
     const [estadoQuestao, setEstadoQuestao] = useState(true);
     const [idTpQuestao, setIdTpQuestao] = useState(1);
-
-    // const history = useHistory();
 
     const tipoOptions = [
         { value: 1, text: 'Discursivas (formação geral)' },

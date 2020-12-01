@@ -5,7 +5,6 @@
 .card {
     width: 72% !important;
     margin: 16px 16px 8px 16px !important;
-
 }
 
 .cardActions {
@@ -13,7 +12,15 @@
     flex-direction: column;
 }
 
-.actions {
+.actions1 {
+    display: flex;
+    width: 16%;
+    align-self: center;
+    justify-content: center;
+    margin: 16px 16px 0 0 !important;
+}
+
+.actions2 {
     display: flex;
     width: 16%;
     align-self: center;
@@ -24,6 +31,8 @@
 .cardContent {
     display: flex !important;
     justify-content: start !important;
+    margin-bottom: 14px !important;
+    margin-top: -8px !important;
 }
 
 .cardContentAlt {
@@ -34,4 +43,59 @@
 
 .show{
     display: block !important;
-  }
+}
+
+.alignButton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 32px 8px 32px 0;
+}
+
+.buttonCadastrarQuestao {
+    background-color: #0C326F !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+}
+
+.buttonCadastrarModal {
+    background-color: #1351B4 !important;
+    color: #fff !important;
+    margin-left: 2% !important;
+    width: 100px;
+}
+
+.buttonCancelarModal {
+    width: 100px;
+}
+
+.modalCadastrarQuestao {
+    width: 1046px !important;
+}
+
+.actionsModalQuestao {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 22px;
+}
+
+.editIcon {
+    position: relative;
+    left: 46%;
+}
+
+.cardAnulado {
+    background-color: #ddd !important;
+    width: 72% !important;
+    margin: 16px 16px 8px 16px !important;
+}
+
+.cardContentAnulado {
+    color: #db2828 !important;
+    display: flex !important;
+    font-weight: bold !important;
+    justify-content: start !important;
+    margin-bottom: 14px !important;
+    margin-top: -8px !important;
+}

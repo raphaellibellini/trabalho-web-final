@@ -1,14 +1,20 @@
 import React from 'react';
-import Header from '../../components/Header';
+import HeaderEnade from '../../components/HeaderEnade';
 import { Button } from 'semantic-ui-react';
 import ilustracaoAluno from '../../imgs/ilustracaoAluno.svg';
-
+import { useHistory } from 'react-router-dom';
 import './styles.css';
 
 function Aluno() {
+  const history = useHistory();
+
+  function fazerProva() {
+    history.push('/prova');
+  }
+
   return (
     <div>
-        <Header />
+        <HeaderEnade />
         <div className='div'>
             <div className='divAluno'>
                 <h1>Prepare o seu ambiente e<br />boa prova!</h1>
@@ -20,7 +26,7 @@ function Aluno() {
                     <li>27 (vinte e sete) questões objetivas (componente específico).</li>
                 </ul>
                 <p>A  questão  discursiva  deverá  ser  respondida  em,  no  máximo,  <strong>15 linhas</strong>.<br />Qualquer texto que ultrapasse o espaço destinado à resposta<br />será desconsiderado.</p>
-                <Button className='buttonFazerProva'>Fazer a prova</Button>
+                <Button className='buttonFazerProva' onClick={() => fazerProva()}>Fazer a prova</Button>
                 <Button className='buttonResultado'>Ver a nota da prova</Button>
             </div>
             <img src={ilustracaoAluno} alt="Aluno concentrado, sentado junto a um laptop numa mesa" className='ilustracaoAluno' />

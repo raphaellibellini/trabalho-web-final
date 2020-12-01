@@ -3,7 +3,7 @@ import logoBranco from '../../imgs/logoBranco.svg';
 import { Icon } from 'semantic-ui-react'
 import './styles.css';
 
-function Header() {
+function HeaderEnade() {
     return (
         <div className='divHeader'>
             <img src={logoBranco} alt="Logo do Enade" className='logoBranco'/>
@@ -12,4 +12,4 @@ function Header() {
     )
 }
 
-export default Header;
+export default HeaderEnade;

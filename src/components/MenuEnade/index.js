@@ -2,7 +2,7 @@ import React from 'react';
 import logoBranco from '../../imgs/logoBranco.svg';
 import { Menu, Button, Icon, Dropdown } from 'semantic-ui-react'
 import './styles.css';
-import Header from '../Header';
+import HeaderEnade from '../HeaderEnade';
 
 function MenuEnade() {
   return (

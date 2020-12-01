@@ -1,0 +1,15 @@
+.resp {
+    width: 100% !important;
+    margin-top: 16px;
+}
+
+.buttonFinalizarProva {
+    background-color: #1351B4 !important;
+    color: #fff !important;
+    margin-top: 3% !important;
+    width: 20%;
+}
+
+body {
+    background-color: #E7EBF1 !important;
+}

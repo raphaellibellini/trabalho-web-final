@@ -27,6 +27,7 @@
 h1 {
     text-align: left;  
     font-size: 36px !important;
+    margin: 31px 0 32px 190px !important;
 }
 
 .ilustracaoAluno {
@@ -40,7 +41,7 @@ h1 {
 .div {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: 90vh;
     background-color: #E7EBF1;
 }
 
