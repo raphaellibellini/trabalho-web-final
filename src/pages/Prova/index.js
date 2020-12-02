@@ -37,6 +37,7 @@ function Prova() {
         });
         try{
             const response = await api.post('/resultado/cadastrar', provaFinalizada);
+            console.log('resultado', response.data.valorObtido);
             alert('Prova enviada')
         }catch (e) {
             console.error({e});

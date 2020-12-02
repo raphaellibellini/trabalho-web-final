@@ -23,8 +23,9 @@
     font-size: 16px !important;
 }
 
-h1 {
+.titleLogin {
   text-align: left;  
+  margin: 16 0 16px 0 !important;
   font-size: 36px !important;
 }
 

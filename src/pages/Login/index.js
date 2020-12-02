@@ -9,7 +9,7 @@ function Login() {
         <div className='divLogin'>
             <section className='login-form'>
                 <img src={logoAzul} alt="Logo do Enade" className='logo'/>
-                <h1>Login</h1>
+                <h1 className='titleLogin'>Login</h1>
                 <Input placeholder='Usuário' className='inputLogin' />
                 <Input placeholder='Senha' className='inputLogin' />
                 <Button className='buttonLogin'>Entrar</Button>

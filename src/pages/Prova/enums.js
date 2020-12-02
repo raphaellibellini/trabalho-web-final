@@ -1,8 +1,8 @@
 export const RESPOSTAS = {
-    ALTERNATIVA_A: 'alternativaA',
-    ALTERNATIVA_B: 'alternativaB',
-    ALTERNATIVA_C: 'alternativaC',
-    ALTERNATIVA_D: 'alternativaD',
-    ALTERNATIVA_E: 'alternativaE',
+    ALTERNATIVA_A: 'Alternativa A',
+    ALTERNATIVA_B: 'Alternativa B',
+    ALTERNATIVA_C: 'Alternativa C',
+    ALTERNATIVA_D: 'Alternativa D',
+    ALTERNATIVA_E: 'Alternativa E',
 }
 

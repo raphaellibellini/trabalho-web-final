@@ -39,6 +39,14 @@ function Professor() {
         { value: 4, text: 'objetivas (componente específico)' }        
     ]
 
+    const tipoOptionsResp = [
+        { value: 1, text: 'Alternativa A' },
+        { value: 2, text: 'Alternativa B' },
+        { value: 3, text: 'Alternativa C' },
+        { value: 4, text: 'Alternativa D' },     
+        { value: 5, text: 'Alternativa E' },  
+    ]
+
 
     async function handleAdd(e) {
         const data = {
@@ -57,6 +65,7 @@ function Professor() {
             const response = await api.post('questao/cadastrar', data);
             console.log('resp', response);
             alert(`Questão cadastrada com sucesso!`);
+
             api.get('questao/listar-all').then(response => {
                 setQuestoes(response.data);
             });
@@ -128,7 +137,15 @@ function Professor() {
 
     function handleRegister(e) {
         e.preventDefault(); 
-        editing ? handleEdit(questionEditing) : handleAdd()
+        editing ? handleEdit(questionEditing) : handleAdd();
+        setDescricao('');
+        setCorreta('');
+        setIdTpQuestao(1);
+        setAlternativaA('');
+        setAlternativaB('');
+        setAlternativaC('');
+        setAlternativaD('');
+        setAlternativaE('');
     }
 
 
@@ -267,7 +284,7 @@ function Professor() {
                             <Icon name='edit' size='large' className='editIcon' type='button' onClick={() => editQuestion(questao)} />
                             <Card.Header className='cardContent'>{`Pergunta: ${questao.descricao}`}</Card.Header>
                             <Card.Meta className={`${questao.estadoQuestao === true ? 'cardContent' : 'cardContentAnulado'}`}>{`${questao.estadoQuestao === true ? 'Validada' : 'Anulada'}`}</Card.Meta>
-                            <If condition={questao.tpQuestao === 'Objetivas (formação geral)' || questao.tpQuestao === 'objetivas (componente específico)questao'}>
+                            <If condition={questao.tpQuestao === 'Objetivas (formação geral)' || questao.tpQuestao === 'objetivas (componente específico)'}>
                                 <Card.Description className='cardContentAlt'>
                                 {`A) ${questao.alternativaA}`}<br />
                                 {`B) ${questao.alternativaB}`}<br />
@@ -312,7 +329,12 @@ function Professor() {
                             <div className='inputs'>
                                 <Select placeholder='Selecione o tipo da questão' options={tipoOptions} className='selectCadastro' value={idTpQuestao} onChange={(e, data) => setIdTpQuestao(data.value)}/>
                                 <TextArea placeholder='Pergunta' style={{ minHeight: 100 }} className='inputCadastro' value={descricao} onChange={e => setDescricao(e.target.value)}/>
-                                <TextArea placeholder='Resposta' style={{ minHeight: 80 }} className='inputCadastro' value={correta} onChange={e => setCorreta(e.target.value)}/>
+                                <If condition={idTpQuestao === 1 || idTpQuestao === 3} >
+                                    <TextArea placeholder='Resposta' style={{ minHeight: 80 }} className='inputCadastro' value={correta} onChange={e => setCorreta(e.target.value)}/>
+                                </If>
+                                <If condition={idTpQuestao === 2 || idTpQuestao === 4} >
+                                    <Select placeholder='Selecione a alternativa correta' options={tipoOptionsResp} className='selectCadastro' value={correta} onChange={(e, data) => setCorreta(data.value)}/>
+                                </If>
                                 <div className='actionsModalQuestao'>
                                     <Button className='buttonCancelarModal' onClick={() => setOpen(false) && setEditing(false)} >Cancelar</Button>
                                     <Button className='buttonCadastrarModal' type='submit'>Cadastrar</Button>

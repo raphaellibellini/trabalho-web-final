@@ -83,6 +83,7 @@
 .editIcon {
     position: relative;
     left: 46%;
+    padding: 0 24px !important;
 }
 
 .cardAnulado {
