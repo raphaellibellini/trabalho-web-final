@@ -9,9 +9,10 @@ import './styles.css';
 function Prova() {
     const [prova, setProva] = useState({});
     const [listaQuestoesProva, setListaQuestoesProva] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [resultado, setResultado] = useState('');
 
-
-    const buscarQuestoes = useCallback(async ()=>{
+    const buscarQuestoes = useCallback(async () => {
         const { data: nextProva } = await api.get('prova/listar/1')
         setProva(nextProva);
 
@@ -38,7 +39,9 @@ function Prova() {
         try{
             const response = await api.post('/resultado/cadastrar', provaFinalizada);
             console.log('resultado', response.data.valorObtido);
-            alert('Prova enviada')
+            setResultado(response.data.valorObtido);
+            // alert('Prova enviada')
+            setOpen(true);
         }catch (e) {
             console.error({e});
         }
@@ -58,7 +61,7 @@ function Prova() {
         }));
     }, []);
 
-    const isCheched = useCallback((idQuestao, resposta)=>{
+    const isChecked = useCallback((idQuestao, resposta)=>{
         const questao = listaQuestoesProva.find(q => q.idQuestao ===idQuestao);
         if(!questao){
             return false
@@ -83,11 +86,11 @@ function Prova() {
                                 <If condition={questao.tpQuestao === 'Objetivas (formação geral)' || questao.tpQuestao === 'objetivas (componente específico)questao'}>
                                     <Card.Description className='cardContentAlt'>
                                     <Form.Group>
-                                        <Form.Radio label={`A) ${questao.alternativaA}`} checked={isCheched(questao.idQuestao, RESPOSTAS.ALTERNATIVA_A)} value={RESPOSTAS.ALTERNATIVA_A} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_A)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_A}`}/>
-                                        <Form.Radio label={`B) ${questao.alternativaB}`} checked={isCheched(questao.idQuestao, RESPOSTAS.ALTERNATIVA_B)} value={RESPOSTAS.ALTERNATIVA_B} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_B)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_B}`}/>
-                                        <Form.Radio label={`C) ${questao.alternativaC}`} checked={isCheched(questao.idQuestao, RESPOSTAS.ALTERNATIVA_C)} value={RESPOSTAS.ALTERNATIVA_C} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_C)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_C}`}/>
-                                        <Form.Radio label={`D) ${questao.alternativaD}`} checked={isCheched(questao.idQuestao, RESPOSTAS.ALTERNATIVA_D)} value={RESPOSTAS.ALTERNATIVA_D} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_D)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_D}`}/>
-                                        <Form.Radio label={`E) ${questao.alternativaE}`} checked={isCheched(questao.idQuestao, RESPOSTAS.ALTERNATIVA_E)} value={RESPOSTAS.ALTERNATIVA_E} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_E)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_E}`}/>
+                                        <Form.Radio label={`A) ${questao.alternativaA}`} checked={isChecked(questao.idQuestao, RESPOSTAS.ALTERNATIVA_A)} value={RESPOSTAS.ALTERNATIVA_A} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_A)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_A}`}/>
+                                        <Form.Radio label={`B) ${questao.alternativaB}`} checked={isChecked(questao.idQuestao, RESPOSTAS.ALTERNATIVA_B)} value={RESPOSTAS.ALTERNATIVA_B} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_B)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_B}`}/>
+                                        <Form.Radio label={`C) ${questao.alternativaC}`} checked={isChecked(questao.idQuestao, RESPOSTAS.ALTERNATIVA_C)} value={RESPOSTAS.ALTERNATIVA_C} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_C)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_C}`}/>
+                                        <Form.Radio label={`D) ${questao.alternativaD}`} checked={isChecked(questao.idQuestao, RESPOSTAS.ALTERNATIVA_D)} value={RESPOSTAS.ALTERNATIVA_D} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_D)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_D}`}/>
+                                        <Form.Radio label={`E) ${questao.alternativaE}`} checked={isChecked(questao.idQuestao, RESPOSTAS.ALTERNATIVA_E)} value={RESPOSTAS.ALTERNATIVA_E} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_E)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_E}`}/>
                                     </Form.Group>
                                     </Card.Description>
                                 </If>
@@ -109,6 +112,20 @@ function Prova() {
                 })}
                 <Button className='buttonFinalizarProva' type='submit' >Finalizar Prova</Button> 
             </form>
+
+
+            <Modal
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                open={open}
+                >
+                <Modal.Header>Resultado da prova</Modal.Header>
+                <Modal.Content image>
+                    <Modal.Description>
+                        <p>{`Sua nota foi: ${resultado}`}</p>
+                    </Modal.Description>
+                </Modal.Content>
+            </Modal>
         </div>
     );
 }

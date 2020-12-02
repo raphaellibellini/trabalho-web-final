@@ -40,11 +40,11 @@ function Professor() {
     ]
 
     const tipoOptionsResp = [
-        { value: 1, text: 'Alternativa A' },
-        { value: 2, text: 'Alternativa B' },
-        { value: 3, text: 'Alternativa C' },
-        { value: 4, text: 'Alternativa D' },     
-        { value: 5, text: 'Alternativa E' },  
+        { value: 'alternativaA', text: 'Alternativa A' },
+        { value: 'alternativaB', text: 'Alternativa B' },
+        { value: 'alternativaC', text: 'Alternativa C' },
+        { value: 'alternativaD', text: 'Alternativa D' },     
+        { value: 'alternativaE', text: 'Alternativa E' },  
     ]
 
 
