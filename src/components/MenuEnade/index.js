@@ -46,11 +46,11 @@ function MenuEnade() {
                       </Dropdown.Item>
                   </Dropdown.Menu>
               </Dropdown>
-              <Menu.Menu position='right' color='#1351B4' >
+              {/* <Menu.Menu position='right' color='#1351B4' >
                   <Menu.Item>
                       <Button className='buttonProva'>Gerar Prova</Button> 
                   </Menu.Item>  
-              </Menu.Menu>
+              </Menu.Menu> */}
           </Menu>
       </div>
   );

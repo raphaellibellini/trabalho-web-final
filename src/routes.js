@@ -6,6 +6,7 @@ import NewQuestion from './pages/NewQuestion';
 import Professor from './pages/Professor';
 import Aluno from './pages/Aluno';
 import Prova from './pages/Prova';
+import RelacaoAlunos from './pages/RelacaoAlunos';
 
 function Routes() {
     return(
@@ -17,6 +18,7 @@ function Routes() {
                 <Route path='/professor' component={Professor} />
                 <Route path='/aluno' component={Aluno} />
                 <Route path='/prova' component={Prova} />
+                <Route path='/relacaoalunos' component={RelacaoAlunos} />
             </Switch>
         </BrowserRouter>
     )
