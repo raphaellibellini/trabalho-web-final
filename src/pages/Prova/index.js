@@ -40,7 +40,6 @@ function Prova() {
             const response = await api.post('/resultado/cadastrar', provaFinalizada);
             console.log('resultado', response.data.valorObtido);
             setResultado(response.data.valorObtido);
-            // alert('Prova enviada')
             setOpen(true);
         }catch (e) {
             console.error({e});
