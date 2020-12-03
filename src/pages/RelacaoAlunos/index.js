@@ -4,18 +4,38 @@ import HeaderEnade from '../../components/HeaderEnade';
 import MenuEnade from '../../components/MenuEnade';
 import api from '../../service/api';
 import './styles.css';
+import { render } from 'react-dom';
+import { Pie } from 'react-chartjs-2';
 
 function RelacaoAlunos() {
     const [alunosCadastrados, setAlunosCadastrados] = useState([]);
     const [alunosProva, setAlunosProva] = useState([]);
     const [alunosSemProva, setAlunosSemProva] = useState([]);
-
+    const [percentage, setPercentage] = useState(1);
+    const [data, setData] = useState([])
 
     useEffect(() => {
         buscarAlunosCadastrados();
         buscarAlunosProva();
         // buscarAlunosSemProva();
-    }, []);
+        gerarGrafico();
+    }, [data, percentage]);
+
+
+    function gerarGrafico() {
+        setPercentage(80);
+
+        setData({
+            labels: ['Alunos que fizeram a prova', 'Alunos que não fizeram a prova'],
+            datasets: [{
+                data: [alunosProva.length, alunosSemProva.length],
+                backgroundColor: [
+                '#0C326F',
+                '#1351B4'
+                ]
+            }]
+        })
+    }
 
     const buscarAlunosCadastrados = useCallback(async () => {
         const resp = await api.get('relatorio/alunos')
@@ -88,6 +108,14 @@ function RelacaoAlunos() {
                 </Table.Body>
             </Table>
             <h1 className='title'>Alunos que fizeram a prova x alunos que não fizeram a prova</h1>
+
+
+                <div>
+                    <Pie data={data}>
+                    </Pie>
+                </div>
+
+
             <div className='divSubtitle'>
                 <div>
                     <h2>Alunos que fizeram a prova</h2>
