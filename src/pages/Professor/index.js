@@ -261,15 +261,9 @@ function Professor() {
         try {
             const response = await api.put('prova/atualizar/1', data);
             console.log('resp', response);
-            if(response.status === 200) {
-                alert(`Prova cadastrada com sucesso!`);
-            } else {
-            alert(`Erro ao cadastrar a prova.${<br />}A prova deve ter 36 questões.`)
-            }
-            
+            alert(`Prova cadastrada com sucesso!`);
         } catch (err) {
-            console.log('erro', err);
-            alert(`Erro no cadastro, tente novamente.`);
+            alert(`Erro no cadastro, verifique se selecionou 36 questões e tente novamente.`);
         }
     }
 
@@ -331,31 +325,38 @@ function Professor() {
                 <Modal.Header>Cadastrar Questão</Modal.Header>
                 <Modal.Content image>
                     <Modal.Description>
-                        <form onSubmit={handleRegister} className='formQuestao'>
-                            <div className='inputs'>
-                                <Select placeholder='Selecione o tipo da questão' options={tipoOptions} className='selectCadastro' value={idTpQuestao} onChange={(e, data) => setIdTpQuestao(data.value)}/>
-                                <TextArea placeholder='Pergunta' style={{ minHeight: 100 }} className='inputCadastro' value={descricao} onChange={e => setDescricao(e.target.value)}/>
-                                <If condition={idTpQuestao === 1 || idTpQuestao === 3} >
-                                    <TextArea placeholder='Resposta' style={{ minHeight: 80 }} className='inputCadastro' value={correta} onChange={e => setCorreta(e.target.value)}/>
-                                </If>
+                        <form onSubmit={handleRegister}>
+                            <div  className='formQuestao'>
+                                <div className='inputsPrincipal'>
+                                    <Select placeholder='Selecione o tipo da questão' options={tipoOptions} className='selectCadastro' value={idTpQuestao} onChange={(e, data) => setIdTpQuestao(data.value)}/>
+                                    <TextArea placeholder='Pergunta' style={{ minHeight: 100 }} className='inputCadastro' value={descricao} onChange={e => setDescricao(e.target.value)}/>
+                                    <If condition={idTpQuestao === 1 || idTpQuestao === 3} >
+                                        <TextArea placeholder='Resposta' style={{ minHeight: 80 }} className='inputCadastro' value={correta} onChange={e => setCorreta(e.target.value)}/>
+                                    </If>
+                                    <If condition={idTpQuestao === 2 || idTpQuestao === 4} >
+                                        <Select placeholder='Selecione a alternativa correta' options={tipoOptionsResp} className='selectCadastro' value={correta} onChange={(e, data) => setCorreta(data.value)}/>
+                                    </If>
+                                    {/* <div className='actionsModalQuestao'>
+                                        <Button className='buttonCancelarModal' onClick={() => setOpen(false) && setEditing(false)} >Cancelar</Button>
+                                        <Button className='buttonCadastrarModal' type='submit'>Cadastrar</Button>
+                                    </div> */}
+                                </div>
                                 <If condition={idTpQuestao === 2 || idTpQuestao === 4} >
-                                    <Select placeholder='Selecione a alternativa correta' options={tipoOptionsResp} className='selectCadastro' value={correta} onChange={(e, data) => setCorreta(data.value)}/>
+                                    {/* CONSERTAR IF PARA MOSTRAR ALTERNATIVAS */}
+                                    <div className='alternativas'>
+                                        <Input placeholder='Alternativa A' className='inputCadastro' value={alternativaA} onChange={e => setAlternativaA(e.target.value)}/>
+                                        <Input placeholder='Alternativa B' className='inputCadastro' value={alternativaB} onChange={e => setAlternativaB(e.target.value)}/>
+                                        <Input placeholder='Alternativa C' className='inputCadastro' value={alternativaC} onChange={e => setAlternativaC(e.target.value)}/>
+                                        <Input placeholder='Alternativa D' className='inputCadastro' value={alternativaD} onChange={e => setAlternativaD(e.target.value)}/>
+                                        <Input placeholder='Alternativa E' className='inputCadastro' value={alternativaE} onChange={e => setAlternativaE(e.target.value)}/>
+                                    </div>
                                 </If>
-                                <div className='actionsModalQuestao'>
-                                    <Button className='buttonCancelarModal' onClick={() => setOpen(false) && setEditing(false)} >Cancelar</Button>
-                                    <Button className='buttonCadastrarModal' type='submit'>Cadastrar</Button>
-                                </div>
                             </div>
-                            <If condition={idTpQuestao === 2 || idTpQuestao === 4} >
-                                {/* CONSERTAR IF PARA MOSTRAR ALTERNATIVAS */}
-                                <div className='alternativas'>
-                                    <Input placeholder='Alternativa A' className='inputCadastro' value={alternativaA} onChange={e => setAlternativaA(e.target.value)}/>
-                                    <Input placeholder='Alternativa B' className='inputCadastro' value={alternativaB} onChange={e => setAlternativaB(e.target.value)}/>
-                                    <Input placeholder='Alternativa C' className='inputCadastro' value={alternativaC} onChange={e => setAlternativaC(e.target.value)}/>
-                                    <Input placeholder='Alternativa D' className='inputCadastro' value={alternativaD} onChange={e => setAlternativaD(e.target.value)}/>
-                                    <Input placeholder='Alternativa E' className='inputCadastro' value={alternativaE} onChange={e => setAlternativaE(e.target.value)}/>
-                                </div>
-                            </If>
+                            
+                            <div className='buttonsModalQuestao'>
+                                <Button className='buttonCancelarModal' onClick={() => setOpen(false) && setEditing(false)} >Cancelar</Button>
+                                <Button className='buttonCadastrarModal' type='submit'>Cadastrar</Button>
+                            </div>
                         </form>
                     </Modal.Description>
                 </Modal.Content>

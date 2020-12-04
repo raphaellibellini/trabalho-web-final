@@ -112,3 +112,47 @@
     margin-bottom: 14px !important;
     margin-top: -8px !important;
 }
+
+.inputsPrincipal {
+    display: flex;
+    flex-direction: column;
+    margin-right: 12%;
+}
+
+.selectCadastro {
+    width: 440px;
+    height: 56px;
+    margin-bottom: 16px;
+    border-radius: 6px !important;
+    border: 1px solid #CCCCCC !important;
+    line-height: 2.3em !important;
+    color: #DBCCC7 !important;
+}
+
+.selectCadastro .menu {
+    background-color: white !important;
+}
+
+.alternativas {
+    display: flex;
+    flex-direction: column;
+}
+
+.formQuestao {
+    display: flex !important;
+    flex-direction: row !important;
+    text-align: start !important;
+}
+
+.inputCadastro {
+    width: 440px;
+    height: 56px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+}
+
+.buttonsModalQuestao {
+    display: flex;
+    justify-content: flex-end;
+}
