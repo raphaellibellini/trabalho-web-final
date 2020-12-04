@@ -70,7 +70,7 @@ function Prova() {
 
     return (
         <div>
-            <h1>Prova</h1>
+            <h1 className='titleProva'>Prova</h1>
                 <form 
                     onSubmit={(e)=>{
                         e.preventDefault();
@@ -82,7 +82,7 @@ function Prova() {
                             <Card className='card'>
                             <Card.Content>
                                 <Card.Header className='cardContent'>{`Pergunta: ${questao.descricao}`}</Card.Header>
-                                <If condition={questao.tpQuestao === 'Objetivas (formação geral)' || questao.tpQuestao === 'objetivas (componente específico)questao'}>
+                                <If condition={questao.tpQuestao === 'Objetivas (formação geral)' || questao.tpQuestao === 'objetivas (componente específico)'}>
                                     <Card.Description className='cardContentAlt'>
                                     <Form.Group>
                                         <Form.Radio label={`A) ${questao.alternativaA}`} checked={isChecked(questao.idQuestao, RESPOSTAS.ALTERNATIVA_A)} value={RESPOSTAS.ALTERNATIVA_A} onClick={() => onClickResponse(questao.idQuestao, RESPOSTAS.ALTERNATIVA_A)} id={`${questao.idQuestao}${RESPOSTAS.ALTERNATIVA_A}`}/>

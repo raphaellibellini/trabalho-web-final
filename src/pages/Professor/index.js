@@ -261,9 +261,15 @@ function Professor() {
         try {
             const response = await api.put('prova/atualizar/1', data);
             console.log('resp', response);
-            alert(`Prova cadastrada com sucesso!`);
+            if(response.status === 200) {
+                alert(`Prova cadastrada com sucesso!`);
+            } else {
+            alert(`Erro ao cadastrar a prova.${<br />}A prova deve ter 36 questões.`)
+            }
+            
         } catch (err) {
-            alert('Erro no cadastro, tente novamente.');
+            console.log('erro', err);
+            alert(`Erro no cadastro, tente novamente.`);
         }
     }
 

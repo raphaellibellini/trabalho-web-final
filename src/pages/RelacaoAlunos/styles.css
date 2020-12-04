@@ -23,11 +23,28 @@
     margin-left: 0 !important;
 }
 
+.tableSemProva {
+    margin-left: 30% !important;
+}
+
 .tableHeader {
     background-color: #1351B4;
     color: white;
 }
 
 .grafico {
+    display: inline-block !important;
     margin: 48px 0 !important;
+    width: 1000px !important;
+}
+
+.titleSemProva {
+    text-align: start !important;
+}
+
+.buttonDownload1 {
+    background-color: #0C326F !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
 }
