@@ -275,7 +275,6 @@ function Professor() {
                 <Button className='buttonGerarProva' onClick={() => gerarProva()} >Gerar Prova</Button> 
                 <Button className='buttonCadastrarQuestao' onClick={() => setOpen(true)}>Cadastrar Questão</Button>           
             </div>
-            {console.log('quest', questoes)}
             {questoes && questoes.map((questao) => {
                 return (
                     <Card.Group className='divCards' key={questao.idQuestao}>
@@ -336,13 +335,8 @@ function Professor() {
                                     <If condition={idTpQuestao === 2 || idTpQuestao === 4} >
                                         <Select placeholder='Selecione a alternativa correta' options={tipoOptionsResp} className='selectCadastro' value={correta} onChange={(e, data) => setCorreta(data.value)}/>
                                     </If>
-                                    {/* <div className='actionsModalQuestao'>
-                                        <Button className='buttonCancelarModal' onClick={() => setOpen(false) && setEditing(false)} >Cancelar</Button>
-                                        <Button className='buttonCadastrarModal' type='submit'>Cadastrar</Button>
-                                    </div> */}
                                 </div>
                                 <If condition={idTpQuestao === 2 || idTpQuestao === 4} >
-                                    {/* CONSERTAR IF PARA MOSTRAR ALTERNATIVAS */}
                                     <div className='alternativas'>
                                         <Input placeholder='Alternativa A' className='inputCadastro' value={alternativaA} onChange={e => setAlternativaA(e.target.value)}/>
                                         <Input placeholder='Alternativa B' className='inputCadastro' value={alternativaB} onChange={e => setAlternativaB(e.target.value)}/>

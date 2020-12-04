@@ -17,7 +17,7 @@ function Aluno() {
       e.preventDefault();
       try {
           const resp = await api.post(`resultado/validar-aluno/${id}`);
-          console.log('ALUNO PODE', resp);
+          console.log('resp', resp);
           history.push('/prova');
       } catch(err) {
           setOpen(true);
@@ -43,8 +43,8 @@ function Aluno() {
                     <li>27 (vinte e sete) questões objetivas (componente específico).</li>
                 </ul>
                 <p>A  questão  discursiva  deverá  ser  respondida  em,  no  máximo,  <strong>15 linhas</strong>.<br />Qualquer texto que ultrapasse o espaço destinado à resposta<br />será desconsiderado.</p>
-                <form onSubmit={handleProva}>
-                <Button className='buttonFazerProva' type='submit'>Fazer a prova</Button>
+                <form onSubmit={handleProva} className='botaoProva'>
+                  <Button className='buttonFazerProva' type='submit'>Fazer a prova</Button>
                 </form>
             </div>
             <img src={ilustracaoAluno} alt="Aluno concentrado, sentado junto a um laptop numa mesa" className='ilustracaoAluno' />

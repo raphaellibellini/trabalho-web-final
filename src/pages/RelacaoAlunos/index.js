@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Button, Icon, Table } from 'semantic-ui-react';
+import { Icon, Table } from 'semantic-ui-react';
 import HeaderEnade from '../../components/HeaderEnade';
 import MenuEnade from '../../components/MenuEnade';
 import api from '../../service/api';
@@ -203,7 +203,6 @@ function RelacaoAlunos() {
 
     return (
         <div>
-            {console.log('alunosCad', alunosCadastrados)}
             <HeaderEnade />
             <MenuEnade />
             <div className='alignIcon'>

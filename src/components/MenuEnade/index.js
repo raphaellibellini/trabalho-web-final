@@ -1,8 +1,6 @@
 import React from 'react';
-import logoBranco from '../../imgs/logoBranco.svg';
-import { Menu, Button, Icon, Dropdown } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 import './styles.css';
-import HeaderEnade from '../HeaderEnade';
 import { useHistory } from 'react-router-dom';
 
 function MenuEnade() {

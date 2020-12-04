@@ -16,7 +16,7 @@ const PrivateRoute = ({ component: Component, role,...rest }) => (
             props => 
         ( isAuthenticated() && checkRole(role) )
          ? ( <Component {...props} /> ) 
-         : ( <Redirect to={{ pathname: '/', state: { from: props.location } }} /> )
+         : ( role !== 'PROFESSOR' ) ? ( <Redirect to={{ pathname: '/professor', state: { from: props.location } }} /> ) : ( <Redirect to={{ pathname: '/aluno', state: { from: props.location } }} /> )
         } 
     />
 )

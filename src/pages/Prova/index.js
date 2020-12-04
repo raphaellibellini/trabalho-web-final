@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Button, Card, Checkbox, Modal, Select, TextArea, Input, Icon, Form } from 'semantic-ui-react'
+import { Button, Card, Modal, TextArea, Form } from 'semantic-ui-react'
 import api from '../../service/api';
 import If from '../../components/If';
 import { RESPOSTAS } from './enums';
@@ -14,6 +14,8 @@ function Prova() {
     const [resultado, setResultado] = useState('');
 
     const history = useHistory();
+
+    const id = localStorage.getItem('id');
 
     const buscarQuestoes = useCallback(async () => {
         const { data: nextProva } = await api.get('prova/listar/1')
@@ -38,15 +40,12 @@ function Prova() {
     const finalizarProva = useCallback(async (provaAtual, questoes)=> {
         const provaFinalizada = {            
             idProva: 1,
-            idUsuario: 2,
+            idUsuario: id,
             questoes
         };
-        console.log({
-            provaFinalizada
-        });
         try{
             const response = await api.post('/resultado/cadastrar', provaFinalizada);
-            console.log('resultado', response.data.valorObtido);
+            console.log('resp', response);
             setResultado(response.data.valorObtido);
             setOpen(true);
         }catch (e) {

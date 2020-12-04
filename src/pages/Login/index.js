@@ -22,7 +22,7 @@ function Login() {
 
         try {
             const resp = await api.post('usuario/logar', data);
-            console.log('RESPOSTA LOGAR', resp);
+            console.log('resp', resp);
             const alunologado = resp.data;
 
             localStorage.setItem('id', resp.data.id);

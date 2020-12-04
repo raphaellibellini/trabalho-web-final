@@ -46,3 +46,7 @@ ul {
 p {
     text-align: start;
 }
+
+.botaoProva {
+    display: flex;
+}
