@@ -3,14 +3,17 @@ import { Button, Card, Checkbox, Modal, Select, TextArea, Input, Icon, Form } fr
 import api from '../../service/api';
 import If from '../../components/If';
 import { RESPOSTAS } from './enums';
-
+import { useHistory } from 'react-router-dom';
 import './styles.css';
+import HeaderEnade from '../../components/HeaderEnade';
 
 function Prova() {
     const [prova, setProva] = useState({});
     const [listaQuestoesProva, setListaQuestoesProva] = useState([]);
     const [open, setOpen] = useState(false);
     const [resultado, setResultado] = useState('');
+
+    const history = useHistory();
 
     const buscarQuestoes = useCallback(async () => {
         const { data: nextProva } = await api.get('prova/listar/1')
@@ -26,6 +29,11 @@ function Prova() {
             })
         );
     }, []);
+
+    function goToAluno() {
+        setOpen(false);
+        history.push('/aluno');
+    }
 
     const finalizarProva = useCallback(async (provaAtual, questoes)=> {
         const provaFinalizada = {            
@@ -51,8 +59,8 @@ function Prova() {
     }, [buscarQuestoes]);
 
 
-    const onClickResponse = useCallback((idQuestao, resposta)=>{
-        setListaQuestoesProva(questoes => questoes.map((questao)=> {
+    const onClickResponse = useCallback((idQuestao, resposta) => {
+        setListaQuestoesProva(questoes => questoes.map((questao) => {
             if(questao.idQuestao !== idQuestao ){
                 return questao;
             }
@@ -60,7 +68,7 @@ function Prova() {
         }));
     }, []);
 
-    const isChecked = useCallback((idQuestao, resposta)=>{
+    const isChecked = useCallback((idQuestao, resposta) => {
         const questao = listaQuestoesProva.find(q => q.idQuestao ===idQuestao);
         if(!questao){
             return false
@@ -70,6 +78,7 @@ function Prova() {
 
     return (
         <div>
+            <HeaderEnade />
             <h1 className='titleProva'>Prova</h1>
                 <form 
                     onSubmit={(e)=>{
@@ -117,11 +126,13 @@ function Prova() {
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}
+                closeOnDimmerClick={false}
                 >
                 <Modal.Header>Resultado da prova</Modal.Header>
                 <Modal.Content image>
                     <Modal.Description>
-                        <p>{`Sua nota foi: ${resultado}`}</p>
+                        <p>{`Sua nota foi ${resultado}`}</p>
+                        <Button className='buttonOk' onClick={() => goToAluno()}>OK</Button>
                     </Modal.Description>
                 </Modal.Content>
             </Modal>

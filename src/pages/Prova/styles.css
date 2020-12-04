@@ -17,3 +17,9 @@ body {
 .titleProva {
     margin: 48px 0 32px 13.5% !important;
 }
+
+.buttonOk {
+    background-color: #1351B4 !important;
+    color: #fff !important;
+    width: 100px;
+}

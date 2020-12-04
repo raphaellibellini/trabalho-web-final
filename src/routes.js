@@ -1,24 +1,37 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
-// import NewQuestion from './pages/NewQuestion';
 import Professor from './pages/Professor';
 import Aluno from './pages/Aluno';
 import Prova from './pages/Prova';
 import RelacaoAlunos from './pages/RelacaoAlunos';
+import { isAuthenticated, checkRole } from './auth';
 
-function Routes() {
+
+const PrivateRoute = ({ component: Component, role,...rest }) => (
+    <Route 
+        {...rest} 
+        render={
+            props => 
+        ( isAuthenticated() && checkRole(role) )
+         ? ( <Component {...props} /> ) 
+         : ( <Redirect to={{ pathname: '/', state: { from: props.location } }} /> )
+        } 
+    />
+)
+
+
+const Routes = () => {
     return(
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={Login} />
                 <Route path='/register' component={Register} />
-                {/* <Route path='/newquestion' component={NewQuestion} /> */}
-                <Route path='/professor' component={Professor} />
-                <Route path='/aluno' component={Aluno} />
-                <Route path='/prova' component={Prova} />
-                <Route path='/relacaoalunos' component={RelacaoAlunos} />
+                <PrivateRoute role="PROFESSOR" path='/professor' component={Professor} />
+                <PrivateRoute role="ALUNO" path='/aluno' component={Aluno} />
+                <PrivateRoute role="ALUNO" path='/prova' component={Prova} />
+                <PrivateRoute role="PROFESSOR" path='/relacaoalunos' component={RelacaoAlunos}/>
             </Switch>
         </BrowserRouter>
     )

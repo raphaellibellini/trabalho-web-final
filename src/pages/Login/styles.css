@@ -49,3 +49,13 @@
     margin-top: 88px;
     margin-right: 44px;
 }
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastro {
+    text-align: start;
+    margin-top: 16px;
+}
