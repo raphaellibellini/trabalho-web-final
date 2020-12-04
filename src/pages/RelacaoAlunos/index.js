@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Button, Table } from 'semantic-ui-react';
+import { Button, Icon, Table } from 'semantic-ui-react';
 import HeaderEnade from '../../components/HeaderEnade';
 import MenuEnade from '../../components/MenuEnade';
 import api from '../../service/api';
 import './styles.css';
 import { Pie, Bar } from 'react-chartjs-2';
-// import jsPDF from "jspdf";
-// import "jspdf-autotable";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 function RelacaoAlunos() {
     const [alunosCadastrados, setAlunosCadastrados] = useState([]);
@@ -113,31 +113,85 @@ function RelacaoAlunos() {
     }, [buscarNotasAlunos]);
 
 
-    // function gerarPDF() {
-    //     const doc = new jsPDF("p", "pt", "a4");
-    //     const usersCol = ["Nome", "Email"];
-    //     const usersRows = alunosCadastrados.map(aluno => {
-    //         const row = [aluno.nomeUsuario, aluno.emailUsuario];
-    //         return row;
-    //     });
+    function gerarPDFAlunosCadastrados() {
+        const doc = new jsPDF();
+        const usersCol = ["Nome", "Email"];
+        const usersRows = alunosCadastrados.map(aluno => {
+            const row = [aluno.nomeUsuario, aluno.emailUsuario];
+            return row;
+        });
         
-    //     const startY = 180 * 2.83;
-    //     doc.autoTable(usersCol, usersRows, {
-    //         startY,
-    //         theme: "grid",
-    //         styles: {
-    //         fontSize: 11
-    //         }
-    //     });
+        const startY = 50;
 
-    //     doc.text(
-    //         "Test avec Hooks",
-    //         22 * 2.83,
-    //         doc.autoTable.previous.finalY + 22 
-    //     );
 
-    //     doc.save("jsPDF demo.pdf");
-    // }
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(28);
+        doc.text("Alunos cadastrados", 35, 25);
+
+
+        doc.autoTable(usersCol, usersRows, {
+            startY,
+            styles: {
+            fontSize: 11
+            }
+        });
+
+        doc.save("relatorioAlunosCadastrados.pdf");
+    }
+
+
+    function gerarPDFAlunosProva() {
+        const doc = new jsPDF();
+        const usersCol = ["Nome", "Email", "Nota"];
+        const usersRows = alunosProva.map(aluno => {
+            const row = [aluno.nomeUsuario, aluno.emailUsuario, aluno.valorObtido];
+            return row;
+        });
+        
+        const startY = 50;
+
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(28);
+        doc.text("Alunos que fizeram a prova", 35, 25);
+
+
+        doc.autoTable(usersCol, usersRows, {
+            startY,
+            styles: {
+            fontSize: 11
+            }
+        });
+
+        doc.save("relatorioAlunosProva.pdf");
+    }
+
+
+    function gerarPDFAlunosSemProva() {
+        const doc = new jsPDF();
+        const usersCol = ["Nome", "Email"];
+        const usersRows = alunosSemProva.map(aluno => {
+            const row = [aluno.nomeUsuario, aluno.emailUsuario, aluno.valorObtido];
+            return row;
+        });
+        
+        const startY = 50;
+
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(28);
+        doc.text("Alunos que não fizeram a prova", 35, 25);
+
+
+        doc.autoTable(usersCol, usersRows, {
+            startY,
+            styles: {
+            fontSize: 11
+            }
+        });
+
+        doc.save("relatorioAlunosSemProva.pdf");
+    }
 
 
     useEffect(() => {
@@ -152,10 +206,10 @@ function RelacaoAlunos() {
             {console.log('alunosCad', alunosCadastrados)}
             <HeaderEnade />
             <MenuEnade />
-            <div>
-                {/* <Button className='buttonDownload1' onClick={() => gerarPDF()}>Exportar PDF</Button>  */}
+            <div className='alignIcon'>
+                <h1 className='title'>Alunos cadastrados</h1>
+                <Icon name='file pdf' size='large' className='iconPDF' onClick={() => gerarPDFAlunosCadastrados()} />Exportar PDF
             </div>
-            <h1 className='title'>Alunos cadastrados</h1>
             <Table className='tableCadastrados'>
                 <Table.Body>
                     <Table.Row className='tableHeader'>
@@ -176,7 +230,10 @@ function RelacaoAlunos() {
             </div>
             <div className='divSubtitle'>
                 <div>
-                    <h2 className='titleSemProva'>Alunos que fizeram a prova</h2>
+                    <div className='alignIcon'>
+                        <h2 className='titleSemProva'>Alunos que fizeram a prova</h2>
+                        <Icon name='file pdf' size='large' className='iconPDF' onClick={() => gerarPDFAlunosProva()} />Exportar PDF
+                    </div>
                     <Table className='tableAlunosProva'>
                         <Table.Body>
                             <Table.Row className='tableHeader'>
@@ -195,7 +252,10 @@ function RelacaoAlunos() {
                     </Table>
                 </div>
                 <div className='tableSemProva'>
-                    <h2>Alunos que não fizeram a prova</h2>
+                    <div className='alignIcon'>
+                        <h2 className='titleSemProva'>Alunos que não fizeram a prova</h2>
+                        <Icon name='file pdf' size='large' className='iconPDF' onClick={() => gerarPDFAlunosSemProva()} />Exportar PDF
+                    </div>
                     <Table>
                         <Table.Body>
                             <Table.Row className='tableHeader'>
